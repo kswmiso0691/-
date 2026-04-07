@@ -167,8 +167,11 @@ const interestMap = {
   marketing: '마케팅'
 };
 
+const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const ADMIN_API = isLocal ? '/api/admin/consultations' : 'https://script.google.com/macros/s/AKfycbyccOgPHtP5rI5MGovV7jjBbpEdxdWTeBmUb_jwSj9h3j4FfbS_QKqo5HKKMFVC8bMWIw/exec';
+
 function loadData() {
-  fetch('/api/admin/consultations')
+  fetch(ADMIN_API)
     .then(r => r.json())
     .then(rows => {
       document.getElementById('totalCount').textContent = rows.length + '건';
@@ -184,7 +187,15 @@ function loadData() {
       empty.style.display = 'none';
       container.innerHTML = rows.map(row => {
         let interests = [];
-        try { interests = JSON.parse(row.interest); } catch(e) {}
+        try {
+          if (typeof row.interest === 'string') {
+            try { interests = JSON.parse(row.interest); } catch(e) {
+              interests = row.interest.split(',').map(s => s.trim()).filter(Boolean);
+            }
+          } else if (Array.isArray(row.interest)) {
+            interests = row.interest;
+          }
+        } catch(e) {}
 
         const tagsHtml = interests.map(i =>
           '<span>' + (interestMap[i] || i) + '</span>'
