@@ -437,53 +437,60 @@ function downloadExcel() {
     return;
   }
 
-  const BOM = '\uFEFF';
-  const headers = ['번호', '접수시각', '병원명', '성함', '연락처', '시술건수', '관심항목', '메모', '확인여부'];
-  const csvRows = [headers.join(',')];
+  try {
+    var tab = '\t';
+    var lines = ['번호' + tab + '접수시각' + tab + '병원명' + tab + '성함' + tab + '연락처' + tab + '시술건수' + tab + '관심항목' + tab + '메모' + tab + '확인여부'];
 
-  allRows.forEach(row => {
-    let interests = [];
-    try {
-      if (typeof row.interest === 'string') {
-        try { interests = JSON.parse(row.interest); } catch(e) {
-          interests = row.interest.split(',').map(s => s.trim()).filter(Boolean);
+    allRows.forEach(function(row) {
+      var interests = [];
+      try {
+        if (typeof row.interest === 'string') {
+          try { interests = JSON.parse(row.interest); } catch(e2) {
+            interests = row.interest.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+          }
+        } else if (Array.isArray(row.interest)) {
+          interests = row.interest;
         }
-      } else if (Array.isArray(row.interest)) {
-        interests = row.interest;
-      }
-    } catch(e) {}
-    const interestStr = interests.map(i => interestMap[i] || i).join(' / ');
+      } catch(e3) {}
+      var interestStr = interests.map(function(i){ return interestMap[i] || i; }).join(' / ');
 
-    const dt = new Date(row.submitted_at || row.created_at);
-    const timeStr = dt.toLocaleString('ko-KR');
-    const status = checkedIds[row.id] ? '확인완료' : '미확인';
+      var dt = new Date(row.submitted_at || row.created_at);
+      var timeStr = dt.toLocaleString('ko-KR');
+      var status = checkedIds[row.id] ? '확인완료' : '미확인';
+      var phone = String(row.phone || '');
 
-    csvRows.push([
-      row.id,
-      '"' + timeStr + '"',
-      '"' + (row.clinic || '').replace(/"/g, '""') + '"',
-      '"' + (row.name || '').replace(/"/g, '""') + '"',
-      '"' + (row.phone || '').replace(/"/g, '""') + '"',
-      row.cases || '',
-      '"' + interestStr.replace(/"/g, '""') + '"',
-      '"' + (row.memo || '').replace(/"/g, '""') + '"',
-      status
-    ].join(','));
-  });
+      lines.push(
+        row.id + tab +
+        timeStr + tab +
+        (row.clinic || '') + tab +
+        (row.name || '') + tab +
+        phone + tab +
+        (row.cases || '') + tab +
+        interestStr + tab +
+        (row.memo || '') + tab +
+        status
+      );
+    });
 
-  const csvContent = BOM + csvRows.join('\n');
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.style.display = 'none';
-  a.href = url;
-  a.download = '상담접수_' + new Date().toISOString().slice(0, 10) + '.csv';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 100);
+    var content = '\uFEFF' + lines.join('\r\n');
+    var blob = new Blob([content], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+    var filename = '상담접수_' + new Date().toISOString().slice(0, 10) + '.xls';
+
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      var url = window.URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+  } catch(err) {
+    alert('다운로드 오류: ' + err.message);
+  }
 }
 
 function esc(str) {
