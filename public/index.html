@@ -808,8 +808,10 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // 폼 제출
-// TODO: 서버 배포 후 아래 URL을 실제 API 엔드포인트로 교체
-const API_URL = '/api/consult';
+const LOCAL_API = '/api/consult';
+const SHEET_API = 'https://script.google.com/macros/s/AKfycbyccOgPHtP5rI5MGovV7jjBbpEdxdWTeBmUb_jwSj9h3j4FfbS_QKqo5HKKMFVC8bMWIw/exec';
+const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const API_URL = isLocal ? LOCAL_API : SHEET_API;
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -830,11 +832,12 @@ function handleSubmit(e) {
 
   fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    headers: isLocal ? { 'Content-Type': 'application/json' } : {},
+    body: JSON.stringify(data),
+    mode: isLocal ? 'same-origin' : 'no-cors'
   })
   .then(res => {
-    if (!res.ok) throw new Error('서버 오류');
+    if (isLocal && !res.ok) throw new Error('서버 오류');
     alert('상담 신청이 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
     form.reset();
   })
