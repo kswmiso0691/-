@@ -810,9 +810,9 @@
 
 <!-- ==================== 전단지 앞면 ==================== -->
 <h1 class="section-title">- 전단지 앞면 -</h1>
-<div class="flyer flyer-front">
-  <div class="top-badge">DENTAL EXPO 2026</div>
-  <img src="Green and Blue Modern Company Logo/1.png" alt="Savecore" style="height:200px;margin-bottom:8px">
+<div class="flyer flyer-front" style="position:relative;overflow:hidden">
+  <img src="Green and Blue Modern Company Logo/1.png" alt="Savecore" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:300px;opacity:0.08;pointer-events:none;z-index:0">
+  <div class="top-badge" style="position:relative;z-index:1">DENTAL EXPO 2026</div>
 
   <p class="hero-question">원장님, 임플란트 재료비</p>
   <p class="hero-question">매달 얼마나 새고 있나요?</p>
@@ -870,8 +870,9 @@
 
 <!-- ==================== 전단지 뒷면 ==================== -->
 <h1 class="section-title">- 전단지 뒷면 -</h1>
-<div class="flyer flyer-back">
-  <div class="back-brand"><img src="Green and Blue Modern Company Logo/1.png" alt="Savecore" style="height:200px"></div>
+<div class="flyer flyer-back" style="position:relative;overflow:hidden">
+  <img src="Green and Blue Modern Company Logo/1.png" alt="Savecore" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:300px;opacity:0.06;pointer-events:none;z-index:0">
+  <div class="back-brand" style="position:relative;z-index:1"><span class="logo">DENNOTE</span></div>
   <div class="back-header">
     <h2>1케이스 원가, <em>얼마나 아끼나?</em></h2>
     <p>기존 개별구매, 패키지 할인가, 덴노트 구조를 비교합니다.</p>
