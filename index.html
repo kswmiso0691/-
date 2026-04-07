@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>덴딜 | 원장님, 연 6,720만원 순이익 증가의 구조</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--card:#f7f8fa;--card2:#eef1f5;--border:#dfe2e8;--text:#1a1d2e;--text-dim:#5a6170;--text-muted:#8b95a5;--accent:#00b894;--accent-glow:rgba(0,184,148,0.12);--accent-soft:rgba(0,184,148,0.07);--red:#ff4757;--red-soft:rgba(255,71,87,0.08);--orange:#f39c12;--orange-soft:rgba(243,156,18,0.08);--blue:#3b82f6;--blue-soft:rgba(59,130,246,0.08);--radius:16px;--radius-sm:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR','Outfit',sans-serif;font-size:15px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(0,184,148,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border:1px solid rgba(0,184,148,0.2);border-radius:100px;padding:7px 18px;font-size:12px;font-weight:600;letter-spacing:.8px;color:var(--accent);margin-bottom:32px;animation:fadeIn .6s ease-out}
+.hero-chip .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-amount{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(52px,13vw,120px);line-height:1;letter-spacing:-2px;color:var(--accent);animation:fadeUp .7s ease-out .1s both}
+.hero-amount .unit{font-family:'Noto Sans KR',sans-serif;font-size:clamp(20px,5vw,40px);font-weight:700;color:var(--text);letter-spacing:0;margin-left:4px}
+.hero-label{font-size:clamp(16px,3.5vw,24px);font-weight:700;color:var(--text-dim);margin-top:8px;letter-spacing:1px;animation:fadeUp .7s ease-out .2s both}
+.hero-desc{font-size:clamp(14px,2.2vw,17px);color:var(--text-dim);max-width:500px;margin-top:28px;line-height:1.9;animation:fadeUp .7s ease-out .35s both;word-break:keep-all}
+.hero-desc strong{color:var(--text);font-weight:700}
+.hero-tags{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s ease-out .5s both}
+.hero-tags .tag{display:flex;align-items:center;gap:6px;background:var(--red-soft);border:1px solid rgba(255,71,87,0.15);border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--red)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.4}
+.scroll-hint span{font-size:10px;letter-spacing:2px;color:var(--text-muted)}
+.scroll-hint .arrow{width:20px;height:20px;border-right:1.5px solid var(--text-muted);border-bottom:1.5px solid var(--text-muted);transform:rotate(45deg);animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.sec{padding:72px 0}
+.sec-step{font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;color:var(--accent);margin-bottom:10px}
+.sec-title{font-size:clamp(22px,5vw,32px);font-weight:900;line-height:1.35;color:var(--text);word-break:keep-all}
+.sec-desc{font-size:15px;color:var(--text-dim);margin-top:10px;line-height:1.7;word-break:keep-all}
+.sec-header{margin-bottom:36px}
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:13px;font-weight:700;letter-spacing:.4px;color:var(--text-muted);text-transform:uppercase;padding:12px 6px;text-align:center;background:var(--card2);border-bottom:1px solid var(--border);word-break:keep-all}
+.tbl th:first-child{text-align:center}
+.tbl th.col-new{color:#fff;font-size:14px;font-weight:800;background:var(--accent);border-left:2px solid var(--accent);border-right:2px solid var(--accent)}
+.tbl th.col-new:last-child{background:#e74c3c;border-left:2px solid #e74c3c;border-right:2px solid #e74c3c}
+.tbl td{padding:10px 6px;font-size:14px;border-bottom:1px solid var(--border);text-align:center;word-break:keep-all}
+.tbl td:first-child{text-align:center;font-weight:600;color:var(--text)}
+.tbl td:nth-child(4){background:rgba(0,184,148,0.06);border-left:2px solid rgba(0,184,148,0.2);border-right:2px solid rgba(0,184,148,0.2)}
+.tbl td:nth-child(5){background:rgba(231,76,60,0.05);border-left:2px solid rgba(231,76,60,0.15);border-right:2px solid rgba(231,76,60,0.15)}
+.val-old{color:var(--text-muted)}.val-pkg{color:var(--text-muted);font-weight:500}
+.val-new{color:var(--text);font-weight:900;font-size:16px}
+.val-save{color:#e74c3c;font-weight:900;font-size:15px}
+.val-muted{color:var(--text-muted);font-size:13px}
+.tbl .row-total td{border-top:2px solid var(--accent);border-bottom:none;font-weight:900;font-size:14px;padding-top:14px;background:var(--accent-soft)}
+.tbl .row-total td:nth-child(4){background:rgba(0,184,148,0.12)}
+.tbl .row-total td:nth-child(5){background:rgba(231,76,60,0.08)}
+.tbl .row-hidden td{border-top:1px solid var(--border);background:rgba(0,0,0,0.01)}
+.tbl .row-hidden td:first-child{color:var(--text-dim);font-weight:500;font-size:14px}
+.result-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.r-badge{border-radius:var(--radius-sm);padding:16px 14px;text-align:center;background:var(--card);border:1px solid var(--border)}
+.r-badge .r-label{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;color:var(--text-muted)}
+.r-badge .r-val{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(18px,4vw,24px);line-height:1.1;color:var(--text-muted)}
+.r-badge .r-sub{font-size:13px;color:var(--text-muted);margin-top:4px}
+.notice{display:flex;align-items:flex-start;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-top:16px;font-size:14px;color:var(--text-dim);line-height:1.7;word-break:keep-all}
+.notice svg{flex-shrink:0;margin-top:1px}
+.notice strong{color:var(--text);font-weight:700}
+.decision-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.d-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;gap:16px;align-items:center}
+.d-num{font-family:'Outfit',sans-serif;font-size:32px;font-weight:900;color:var(--border);line-height:1;flex-shrink:0;min-width:40px}
+.d-body h4{font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px;word-break:keep-all}
+.d-tag{display:inline-block;font-size:13px;font-weight:700;padding:5px 12px;border-radius:6px;margin-top:10px}
+.d-tag.red{background:var(--red-soft);color:var(--red)}
+.d-tag.green{background:var(--accent-soft);color:var(--accent)}
+.cta-section{padding:80px 20px 100px;text-align:center;position:relative}
+.cta-quote-mark{font-family:'Outfit',sans-serif;font-size:80px;font-weight:900;color:rgba(0,184,148,0.1);line-height:.6;margin-bottom:16px;position:relative}
+.cta-text{font-size:clamp(20px,4.5vw,32px);font-weight:700;line-height:1.7;color:var(--text);max-width:500px;margin:0 auto;position:relative;word-break:keep-all}
+.cta-text strong{color:var(--accent);font-weight:900}
+.cta-btns{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:48px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-size:16px;font-weight:800;padding:16px 36px;border-radius:14px;text-decoration:none;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 24px rgba(0,184,148,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(0,184,148,0.35)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--border);color:var(--text-dim);font-size:14px;font-weight:600;padding:12px 28px;border-radius:12px;text-decoration:none;cursor:pointer;transition:all .25s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.cta-checks{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.cta-checks span{font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.cta-checks .ck{color:var(--accent);font-weight:700}
+footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border)}
+.footer-brand{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;letter-spacing:3px;color:var(--accent);margin-bottom:6px}
+footer p{font-size:13px;color:var(--text-muted)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
+.partner-toggle-btn{display:none;width:100%;margin-top:16px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-weight:700;color:var(--text-dim);cursor:pointer;transition:all .25s}
+.partner-toggle-btn:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:480px){
+  .tbl th{padding:8px 3px;font-size:11px;letter-spacing:0}
+  .tbl td{padding:8px 3px;font-size:12px}
+  .val-new{font-size:13px}.val-save{font-size:12px}
+  .tbl .row-total td{font-size:12px;padding-top:10px}
+  .tbl .row-hidden td:first-child{font-size:11px}
+  .table-card{overflow-x:hidden}
+  .result-row{grid-template-columns:1fr;gap:8px}
+  .d-card{padding:14px;gap:12px}.decision-list{grid-template-columns:1fr}
+  .d-num{font-size:26px;min-width:32px}.d-body h4{font-size:14px}
+  .sec{padding:56px 0}.notice{font-size:13px;padding:14px}
+  /* ABOUT 모바일 간격 */
+  .about-badges{gap:6px !important;margin-bottom:16px !important}
+  .about-badges span{padding:6px 10px !important;font-size:11px !important}
+  .about-stats>div{padding:18px 6px !important}
+  .about-stats>div>div:nth-child(2){font-size:12px !important}
+  .about-stats>div>div:nth-child(3){font-size:11px !important}
+  /* 파트너 더보기 */
+  .partner-grid{grid-template-columns:1fr 1fr !important;gap:8px !important}
+  .partner-grid .partner-extra{display:none}
+  .partner-grid.expanded .partner-extra{display:block}
+  .partner-toggle-btn{display:block}
+  .partner-item div[style*="padding:10px"]{padding:8px 8px !important;font-size:12px !important}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-chip"><span class="dot"></span>DENTAL COST REDUCTION</div>
+  <div class="hero-amount">6,720<span class="unit">만원</span></div>
+  <div class="hero-label">연간 지출 감소</div>
+  <p class="hero-desc">진료량을 늘리지 않아도,<br><strong>치과 지출을 줄이고 업무를 자동화</strong>하면<br>연간 <strong>약 6,720만 원</strong>의 비용이 절감됩니다.</p>
+
+  <!-- 3가지 지출 감소 이유 -->
+  <div style="display:flex;flex-direction:column;gap:14px;margin-top:36px;max-width:520px;width:100%;animation:fadeUp .7s ease-out .5s both">
+    <!-- 이유 1: 쇼핑몰 할인 -->
+    <div style="display:flex;align-items:center;gap:16px;background:var(--accent-soft);border:1.5px solid rgba(0,184,148,0.2);border-radius:14px;padding:18px 20px;text-align:left">
+      <div style="flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(0,184,148,0.25)">&#x1F6D2;</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--accent);letter-spacing:0.5px;margin-bottom:2px">01. 쇼핑몰 할인</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.6">소모품 <strong>15~30% 할인</strong> 적용.<br>반복 구매 누적 시 연간 수백만 원 절감.</div>
+      </div>
+    </div>
+    <!-- 이유 2: 임플란트 할인 -->
+    <div style="display:flex;align-items:center;gap:16px;background:var(--blue-soft);border:1.5px solid rgba(59,130,246,0.2);border-radius:14px;padding:18px 20px;text-align:left">
+      <div style="flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(59,130,246,0.25)">&#x1F9B7;</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--blue);letter-spacing:0.5px;margin-bottom:2px">02. 임플란트 할인</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.6">1케이스당 <strong>최대 45% 원가 절감</strong>.<br>선결제 없이 개별구매 최저가 적용.</div>
+      </div>
+    </div>
+    <!-- 이유 3: 업무 자동화 -->
+    <div style="display:flex;align-items:center;gap:16px;background:var(--orange-soft);border:1.5px solid rgba(243,156,18,0.2);border-radius:14px;padding:18px 20px;text-align:left">
+      <div style="flex-shrink:0;width:48px;height:48px;border-radius:12px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(243,156,18,0.25)">&#x2699;</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--orange);letter-spacing:0.5px;margin-bottom:2px">03. 업무 자동화</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.6">주문&#183;통계&#183;재고 <strong>앱 자동 처리</strong>.<br>매월 수기 작업 3~5시간 제거.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint"><span>SCROLL</span><div class="arrow"></div></div>
+</section>
+<div class="divider"></div>
+
+<!-- STEP 01 -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">WHY</div>
+    <h2 class="sec-title">1케이스 원가 &#8212; 3가지 구조 비교</h2>
+    <p class="sec-desc">기존 개별구매, 1억 선결제 패키지, 덴딜 구조를 동일 항목으로 비교합니다.</p></div>
+  <div class="table-card"><table class="tbl"><thead><tr><th>항목</th><th class="col-old">기존</th><th class="col-pkg">패키지</th><th class="col-new">덴딜</th><th class="col-new">절약</th></tr></thead>
+  <tbody>
+    <tr><td>Fixture</td><td class="val-old">40,000</td><td class="val-pkg">28,000</td><td class="val-new">25,000</td><td class="val-save">-37.5%</td></tr>
+    <tr><td>부대비용</td><td class="val-old">40,000</td><td class="val-pkg">23,000</td><td class="val-new">19,000</td><td class="val-save">-52.5%</td></tr>
+    <tr class="row-total"><td>합계</td><td class="val-old">80,000</td><td class="val-pkg">51,000</td><td class="val-new">44,000</td><td class="val-save">-45%</td></tr>
+    <tr class="row-hidden"><td>기회비용</td><td class="val-muted">&#8212;</td><td class="val-pkg">+13,700</td><td class="val-new" style="font-size:14px">-13,700</td><td class="val-muted">&#8212;</td></tr>
+    <tr class="row-total" style="border-top:none"><td>실질원가</td><td class="val-old">80,000</td><td class="val-pkg">64,700</td><td class="val-new">30,300</td><td class="val-save">-62.1%</td></tr>
+  </tbody></table></div>
+  <div class="result-row">
+    <div class="r-badge"><div class="r-label">기존 구조</div><div class="r-val">80,000</div><div class="r-sub">기준가</div></div>
+    <div class="r-badge"><div class="r-label">패키지 1억</div><div class="r-val">64,700</div><div class="r-sub">기존 대비 -19.1%</div></div>
+    <div class="r-badge" style="background:var(--accent-soft);border:2px solid var(--accent);border-radius:var(--radius-sm);box-shadow:0 4px 16px rgba(0,184,148,0.15)"><div class="r-label" style="color:var(--accent)">덴딜(개별구매)</div><div class="r-val" style="color:var(--text)">30,300</div><div class="r-sub" style="color:var(--accent);font-weight:700">기존 대비 -62.1%</div></div>
+  </div>
+  <div class="notice">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div><div style="margin-bottom:14px"><strong>패키지의 숨겨진 비용</strong></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--red-soft);border-radius:8px"><span style="font-size:13px">기회비용 (연 5%)</span><span style="font-size:13px;font-weight:700;color:var(--red)">1일 13,700원 &#183; 연 500만원</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--red-soft);border-radius:8px;border:1px solid rgba(255,71,87,0.12)"><span style="font-size:13px;font-weight:700">패키지 숨은 비용 합계</span><span style="font-size:14px;font-weight:800;color:var(--red)">연 500만원 손해</span></div>
+      </div>
+      <div style="margin-top:14px;padding:14px 16px;background:var(--accent-soft);border-radius:10px;border:1px solid rgba(0,184,148,0.15)">
+        <div style="font-size:13px;font-weight:800;color:var(--accent);margin-bottom:6px">&#x1F4A1; 같은 1억, 이렇게 쓰세요</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.7;word-break:keep-all">패키지에 묶어둔 1억을 <strong>병원 장비 투자</strong>나 <strong>펀드&#183;예금</strong>에 넣으면<br>연 <strong style="color:var(--accent)">500만 원 이상의 수익</strong>으로 돌아옵니다.<br>재료는 덴딜로 개별 최저가 구매, 자금은 수익을 만드는 곳에.</div>
+      </div></div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- COMPARE -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">HOW</div>
+    <h2 class="sec-title">기존 방식 vs 덴딜</h2>
+    <p class="sec-desc">재료 주문과 관리의 모든 것이 달라집니다.</p></div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+    <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)">
+      <div style="padding:16px;background:var(--card2);display:flex;align-items:center;gap:10px;border-right:1px solid var(--border)"><span style="font-size:20px">&#x1F630;</span><span style="font-size:15px;font-weight:800;color:var(--text-muted)">기존 방식</span></div>
+      <div style="padding:16px;background:var(--accent-soft);display:flex;align-items:center;gap:10px"><span style="font-size:20px">&#x1F60A;</span><span style="font-size:15px;font-weight:800;color:var(--accent)">덴딜</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr">
+      <div style="padding:20px 16px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">전화&#183;문자 주문</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">주문 <strong style="color:var(--red)">10~15분</strong></span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">즐겨찾기 없음</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">매번 처음부터</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">통계 <strong style="color:var(--red)">수기 정리</strong></span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">인수인계 불가</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">영업시간만 가능</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--red);font-weight:900">&#x2715;</span><span style="font-size:14px;color:var(--text-muted)">가격 불투명</span></div>
+      </div>
+      <div style="padding:20px 16px;background:rgba(0,184,148,0.02);display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--accent)">앱 터치 주문</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--accent)">30초 완료</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--text)">즐겨찾기 지원</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--text)">원터치 재주문</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--accent)">자동 통계</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--text)">자동 인수인계</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--text)">24시간 주문</strong></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:900">&#x2713;</span><strong style="font-size:14px;color:var(--text)">가격 투명 고정</strong></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px">
+    <div style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:var(--radius-sm);padding:20px 12px;text-align:center"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(24px,6vw,36px);color:var(--accent)">30<span style="font-size:clamp(14px,3vw,18px)">초</span></div><div style="font-size:12px;color:var(--text-muted);margin-top:6px;font-weight:600">주문 완료</div></div>
+    <div style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:var(--radius-sm);padding:20px 12px;text-align:center"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(24px,6vw,36px);color:var(--accent)">24<span style="font-size:clamp(14px,3vw,18px)">h</span></div><div style="font-size:12px;color:var(--text-muted);margin-top:6px;font-weight:600">언제든 주문</div></div>
+    <div style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:var(--radius-sm);padding:20px 12px;text-align:center"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(24px,6vw,36px);color:var(--accent)">0<span style="font-size:clamp(14px,3vw,18px)">원</span></div><div style="font-size:12px;color:var(--text-muted);margin-top:6px;font-weight:600">수기 작업 비용</div></div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- AUTOMATION -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">HOW</div>
+    <h2 class="sec-title">지출 통계 관리<br><span style="color:var(--red);text-decoration:line-through">수기</span> &#x2192; <span style="color:var(--accent)">자동화</span></h2>
+    <p class="sec-desc">구매하면 자동으로 통계가 쌓입니다.</p></div>
+  <!-- 플로우 다이어그램 -->
+  <div style="display:flex;flex-direction:column;gap:0;margin-bottom:24px">
+    <!-- BEFORE 흐름 -->
+    <div style="background:var(--red-soft);border:1px solid rgba(255,71,87,0.12);border-radius:var(--radius) var(--radius) 0 0;padding:20px 20px 24px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px"><div style="width:8px;height:8px;border-radius:50%;background:var(--red)"></div><span style="font-size:13px;font-weight:800;color:var(--red);letter-spacing:1px">BEFORE &#8212; 수기 관리</span></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0;overflow-x:auto;padding-bottom:4px">
+        <div style="flex-shrink:0;text-align:center;min-width:80px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(255,71,87,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="12" y2="16"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--red)">영수증 수집</div>
+        </div>
+        <div style="flex-shrink:0;color:var(--red);font-size:18px;padding:0 6px;margin-bottom:16px">&#x2192;</div>
+        <div style="flex-shrink:0;text-align:center;min-width:80px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(255,71,87,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--red)">엑셀 수기입력</div>
+        </div>
+        <div style="flex-shrink:0;color:var(--red);font-size:18px;padding:0 6px;margin-bottom:16px">&#x2192;</div>
+        <div style="flex-shrink:0;text-align:center;min-width:80px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(255,71,87,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--red)">직접 분류</div>
+        </div>
+        <div style="flex-shrink:0;color:var(--red);font-size:18px;padding:0 6px;margin-bottom:16px">&#x2192;</div>
+        <div style="flex-shrink:0;text-align:center;min-width:80px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(255,71,87,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--red)">월말 보고</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px;display:flex;justify-content:center"><div style="background:rgba(255,71,87,0.08);border-radius:8px;padding:8px 14px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--red)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        매월 3~5시간 소요
+      </div></div>
+    </div>
+
+    <!-- 화살표 구분 -->
+    <div style="display:flex;justify-content:center;align-items:center;background:linear-gradient(to bottom,var(--red-soft),var(--accent-soft));padding:12px 0">
+      <div style="background:var(--accent);color:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(0,184,148,0.3)">&#x2193;</div>
+    </div>
+
+    <!-- AFTER 흐름 -->
+    <div style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.12);border-radius:0 0 var(--radius) var(--radius);padding:20px 20px 24px">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px"><div style="width:8px;height:8px;border-radius:50%;background:var(--accent)"></div><span style="font-size:13px;font-weight:800;color:var(--accent);letter-spacing:1px">AFTER &#8212; 덴딜 자동화</span></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0;overflow-x:auto;padding-bottom:4px">
+        <div style="flex-shrink:0;text-align:center;min-width:100px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(0,184,148,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">앱에서 구매</div>
+        </div>
+        <div style="flex-shrink:0;color:var(--accent);font-size:18px;padding:0 10px;margin-bottom:16px">&#x2192;</div>
+        <div style="flex-shrink:0;text-align:center;min-width:100px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#fff;border:2px solid rgba(0,184,148,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">자동 기록·분류</div>
+        </div>
+        <div style="flex-shrink:0;color:var(--accent);font-size:18px;padding:0 10px;margin-bottom:16px">&#x2192;</div>
+        <div style="flex-shrink:0;text-align:center;min-width:100px">
+          <div style="width:56px;height:56px;border-radius:14px;background:var(--accent);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,184,148,0.3)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">통계 즉시 확인</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px;display:flex;justify-content:center"><div style="background:rgba(0,184,148,0.1);border-radius:8px;padding:8px 14px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--accent)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        구매 즉시 자동 완료
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 도입 효과 -->
+  <div style="background:linear-gradient(135deg,rgba(0,184,148,0.08),rgba(0,184,148,0.02));border:2px solid rgba(0,184,148,0.2);border-radius:var(--radius);padding:28px 20px;text-align:center">
+    <div style="font-size:12px;color:var(--text-muted);font-weight:700;letter-spacing:2px;margin-bottom:8px">도입 효과</div>
+    <div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(24px,6vw,36px);color:var(--accent)">재료비 관리 시간 <span style="font-size:clamp(32px,8vw,48px)">90%</span> 절감</div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- SERVICE LAUNCH (WHAT) -->
+<div class="container"><section class="sec reveal" style="text-align:center">
+  <div class="sec-step">WHAT</div>
+  <h2 class="sec-title" style="margin-bottom:12px">덴딜 핵심 서비스 3가지</h2>
+  <p class="sec-desc" style="max-width:460px;margin:0 auto 40px;text-align:center">치과 지출을 줄이는 구체적인 방법</p>
+  <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px">
+    <div style="display:flex;align-items:center;gap:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:left;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--accent)"></div><div style="flex-shrink:0;font-size:32px">&#x1F6D2;</div><div><div style="font-size:16px;font-weight:800;margin-bottom:6px">덴딜몰</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6">&#183; 재료 간편 주문 &amp; 재료관리<br>&#183; 통계 지출관리</div></div></div>
+    <div style="display:flex;align-items:center;gap:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:left;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--blue)"></div><div style="flex-shrink:0;font-size:32px">&#x1F9B7;</div><div><div style="font-size:16px;font-weight:800;margin-bottom:6px">임플란트 주문시스템</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6">&#183; 임플란트 간편 주문 &amp; 즐겨찾기<br>&#183; 통계 지출 기능</div></div></div>
+    <div style="display:flex;align-items:center;gap:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:left;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--orange)"></div><div style="flex-shrink:0;font-size:32px">&#x2699;</div><div><div style="font-size:16px;font-weight:800;margin-bottom:6px">업무 자동화</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6">&#183; 주문&#183;통계&#183;재고 자동 기록<br>&#183; 수기 작업 제거 &amp; 인건비 절감</div></div></div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- APP FEATURES (WHAT) -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">APP</div>
+    <h2 class="sec-title">덴딜 앱 핵심 기능</h2>
+    <p class="sec-desc">쇼핑몰과 임플란트 주문, 모두 한 앱에서.</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="font-size:14px;font-weight:800;color:var(--accent);letter-spacing:1px">DENDEAL MALL</div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.08)"><img src="애플-스크린샷아트보드-1.png" alt="덴딜몰" style="width:100%;display:block"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">즐겨찾기</span>
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">간편주문</span>
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">재료관리</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="font-size:14px;font-weight:800;color:var(--blue);letter-spacing:1px">IMPLANT ORDER</div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.08)"><img src="애플-스크린샷아트보드-2.png" alt="임플란트주문" style="width:100%;display:block"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">임플란트</span>
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">지출통계</span>
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">거래처관리</span>
+      </div>
+    </div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- APP SCREENS (WHAT) -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">APP PREVIEW</div>
+    <h2 class="sec-title">덴딜몰 주요 화면</h2>
+    <p class="sec-desc">즐겨찾기로 간편 주문, 통계로 한눈에 지출 관리.</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="font-size:14px;font-weight:800;color:var(--accent);letter-spacing:1px">즐겨찾기 주문</div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.08)"><img src="쇼핑몰즐겨찾기.JPG" alt="즐겨찾기" style="width:100%;display:block"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">즐겨찾기</span>
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">원터치 재주문</span>
+        <span style="background:var(--accent-soft);border:1px solid rgba(0,184,148,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--accent)">장바구니</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="font-size:14px;font-weight:800;color:var(--blue);letter-spacing:1px">월별 통계</div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,0.08)"><img src="쇼핑몰월별통계.JPG" alt="월별통계" style="width:100%;display:block"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">카테고리별 통계</span>
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">월별 차트</span>
+        <span style="background:var(--blue-soft);border:1px solid rgba(59,130,246,0.15);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--blue)">주문 순위</span>
+      </div>
+    </div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- ABOUT US -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">TRUST</div>
+    <h2 class="sec-title">덴탈서비스(주) &#183; 덴딜</h2>
+    <p class="sec-desc">치과 재료 비용 최적화 플랫폼, 신뢰할 수 있는 파트너.</p></div>
+
+  <!-- 인증 배지 -->
+  <div class="about-badges" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px">
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 벤처기업 인증</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 상표등록 (특허청)</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 연구개발전담부서</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 의료기기판매업</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 현대그린푸드 협약</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 카카오모빌리티 협약</span>
+    <span style="background:var(--card);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--text-dim)">&#x2705; 대한치과감염학회 감사장</span>
+  </div>
+
+  <!-- 수치 -->
+  <div class="about-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+    <div style="padding:28px 12px;border-right:1px solid var(--border)"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(28px,7vw,42px);color:var(--accent)">3,000</div><div style="font-size:14px;font-weight:700;margin-top:6px">회원 치과</div><div style="font-size:13px;color:var(--text-muted);margin-top:2px">서울&#183;수도권</div></div>
+    <div style="padding:28px 12px;border-right:1px solid var(--border)"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(28px,7vw,42px);color:var(--accent)">20+</div><div style="font-size:14px;font-weight:700;margin-top:6px">MOU 파트너</div><div style="font-size:13px;color:var(--text-muted);margin-top:2px">제조사&#183;기공소</div></div>
+    <div style="padding:28px 12px"><div style="font-family:Outfit,sans-serif;font-weight:900;font-size:clamp(28px,7vw,42px);color:var(--accent)">MOU</div><div style="font-size:14px;font-weight:700;margin-top:6px">대기업 협약</div><div style="font-size:13px;color:var(--text-muted);margin-top:2px">현대&#183;카카오</div></div>
+  </div>
+</section></div>
+<div class="divider"></div>
+
+<!-- PARTNER GALLERY -->
+<div class="container"><section class="sec reveal">
+  <div class="sec-header"><div class="sec-step">TRUST</div>
+    <h2 class="sec-title">함께하는 파트너사</h2>
+    <p class="sec-desc">덴딜과 협약을 맺은 전국의 우수 기공소 & 치과 파트너.</p></div>
+  <div id="partnerGrid" class="partner-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="라인치과기공소/라인기공소 감사장위촉장.jpg" alt="라인치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">라인치과기공소</div></div>
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="루시드랩/루시드랩업무협약 감사장.jpg" alt="루시드랩" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">루시드랩</div></div>
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="티엘플란트/티엘플란트 감사장.jpg" alt="티엘플란트" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">티엘플란트</div></div>
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="메탈플라워/메탈플라워 업무협약.jpg" alt="메탈플라워" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">메탈플라워</div></div>
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="새길기공소/새길치과기공소 감사장.jpg" alt="새길치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">새길치과기공소</div></div>
+    <div class="partner-item" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="메디안라인기공소/메디안라인치과기공소 감사장.jpg" alt="메디안라인치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">메디안라인기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="어썸덴탈랩/어썸덴탈랩 감사장.jpg" alt="어썸덴탈랩" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">어썸덴탈랩</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="에이블기공소/에이블치과기공소 감사장.jpg" alt="에이블치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">에이블치과기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="커스토먼트기공소/커스토먼트.jpg" alt="커스토먼트기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">커스토먼트기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="하이테크교정기공소/하이테크교정기공소 감사장.jpg" alt="하이테크교정기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">하이테크교정기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="지르카랩/지르카랩감사장.jpg" alt="지르카랩" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">지르카랩</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="이마스타기공소 감사장/이마스타기공소 감사장.jpg" alt="이마스타기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">이마스타기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="서초와이티플러스기공소/서초와이티플러스기공소 감사장.jpg" alt="서초와이티플러스기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">서초YT플러스기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="에이엔디기공소/에이엔디기공소 감사장.jpg" alt="에이엔디기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">에이엔디기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="한솔치과기공소/한솔치과기공소 위촉장.jpg" alt="한솔치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">한솔치과기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="엘리트위드기공소/엘리트위드치과기공소 위촉장.jpg" alt="엘리트위드기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">엘리트위드기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="디엔에이기공소/디엔에이기공소.jpg" alt="디엔에이기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">디엔에이기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="더그레이스기공소/더그레이스기공소.jpg" alt="더그레이스기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">더그레이스기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="본치과기공소/본치과기공소.jpg" alt="본치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">본치과기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="오랄디자인기공소/오랄디자인기공소.jpg" alt="오랄디자인기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">오랄디자인기공소</div></div>
+    <div class="partner-item partner-extra" style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border)"><img src="미소디자인치과기공소/미소디자인치과기공소.jpg" alt="미소디자인치과기공소" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"><div style="padding:10px 12px;font-size:13px;font-weight:700;text-align:center;background:var(--card)">미소디자인기공소</div></div>
+  </div>
+  <button id="partnerToggle" class="partner-toggle-btn" onclick="document.getElementById('partnerGrid').classList.toggle('expanded');var b=this;b.textContent=b.textContent.includes('더보기')?'접기 ▲':'더보기 ▼ (+15개)'">더보기 ▼ (+15개)</button>
+</section></div>
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-quote-mark reveal">"</div>
+  <div class="cta-text reveal">원장님,<br>임플란트를 더 하지 않아도<br><strong>연 6,720만원이 남습니다.</strong></div>
+  <div class="cta-btns reveal">
+    <a href="http://pf.kakao.com/_MYKhX/chat" class="btn-primary" target="_blank">서비스 신청하기 &#x2192;</a>
+    <a href="http://pf.kakao.com/_MYKhX/chat" class="btn-secondary" target="_blank">카카오톡 상담하기</a>
+    <div class="cta-checks"><span><span class="ck">&#x2713;</span> 비용 분석 무료</span><span><span class="ck">&#x2713;</span> 소량 테스트 가능</span><span><span class="ck">&#x2713;</span> 계약 부담 없음</span></div>
+  </div>
+</section>
+
+<footer><div class="footer-brand">DENDEAL</div><p>치과 재료 비용 최적화 플랫폼 &#8212; dendeal.kr</p></footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

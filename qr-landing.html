@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>덴노트 | 박람회 한정 특별 혜택</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #F5E6CA;
+    --accent-dark: #C8A96E;
+    --accent-soft: rgba(200,169,110,0.1);
+    --brown: #3B2723;
+    --red: #C9544D;
+    --red-soft: rgba(201,84,77,0.07);
+    --blue: #6B8EB2;
+    --blue-soft: rgba(107,142,178,0.08);
+    --orange: #D4955A;
+    --text: #3B2723;
+    --text-dim: #6B5550;
+    --text-muted: #9B8A85;
+    --bg: #FAF8F5;
+    --card: #ffffff;
+    --border: #E8E2DA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
+
+  .container { max-width: 480px; margin: 0 auto; padding: 0 20px; }
+
+  /* ========== 히어로 ========== */
+  .hero {
+    background: linear-gradient(135deg, #F5E6CA, #E8D5B0);
+    color: var(--brown);
+    text-align: center;
+    padding: 48px 24px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 800;
+    letter-spacing: 4px; color: var(--brown);
+    margin-bottom: 6px; position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--brown); color: #F5E6CA;
+    padding: 5px 16px; border-radius: 20px;
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 1px; margin-bottom: 20px;
+    position: relative;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .hero h1 {
+    font-size: 28px; font-weight: 900;
+    line-height: 1.4; margin-bottom: 16px; position: relative;
+  }
+  .hero h1 em { color: var(--brown); font-style: normal; text-decoration: underline; text-decoration-color: var(--brown); text-underline-offset: 4px; }
+
+  /* 히어로 인포그래픽 - 큰 숫자 */
+  .hero-stat {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .hero-stat .big-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 100px; font-weight: 900;
+    color: var(--brown);
+    line-height: 1;
+  }
+  .hero-stat .big-unit {
+    font-size: 32px; font-weight: 900; color: var(--brown);
+  }
+  .hero-stat-label {
+    font-size: 16px; color: rgba(60,30,30,0.6); position: relative;
+  }
+
+  /* ========== WHY — 비주얼 pain ========== */
+  .why-visual {
+    padding: 36px 0 24px;
+  }
+  .circle-badge {
+    display: flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; border-radius: 50%;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px; font-weight: 900; color: #fff;
+    margin: 0 auto 14px; letter-spacing: 1px;
+  }
+  .circle-badge.red { background: var(--red); }
+  .circle-badge.green { background: #C8A96E; color: #fff; }
+  .circle-badge.blue { background: var(--blue); }
+  .circle-badge.orange { background: var(--orange); }
+
+  .section-headline {
+    text-align: center; font-size: 20px; font-weight: 900; margin-bottom: 24px;
+  }
+  .section-headline em { color: #C8A96E; font-style: normal; }
+  .section-headline .red-em { color: var(--red); font-style: normal; }
+
+  /* pain 아이콘 그리드 */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .pain-item {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+  }
+  .pain-item .pain-icon { font-size: 40px; margin-bottom: 8px; }
+  .pain-item .pain-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px; font-weight: 900; color: var(--red);
+  }
+  .pain-item .pain-label {
+    font-size: 12px; font-weight: 700; color: var(--text-dim); margin-top: 2px;
+  }
+
+  /* 비용 누수 바 차트 */
+  .leak-chart {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .leak-chart .chart-title {
+    font-size: 14px; font-weight: 800; text-align: center; margin-bottom: 18px; color: var(--text-dim);
+  }
+  .bar-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label {
+    width: 60px; font-size: 12px; font-weight: 700; color: var(--text-dim); text-align: right; flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1; height: 28px; background: #e9ecef; border-radius: 14px; position: relative; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 14px;
+    display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 800; color: #fff;
+    transition: width 1s ease;
+  }
+  .bar-fill.old { background: linear-gradient(90deg, #ff6b6b, var(--red)); }
+  .bar-fill.pkg { background: linear-gradient(90deg, #ffa502, var(--orange)); }
+  .bar-fill.den { background: linear-gradient(90deg, #DBBF8A, #C8A96E); }
+
+  /* ========== HOW — 프로세스 인포그래픽 ========== */
+  .how-visual {
+    padding: 0 0 24px;
+  }
+  .process-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+  .process-step {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--card); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 18px 20px; width: 100%;
+  }
+  .process-step .ps-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; flex-shrink: 0;
+  }
+  .process-step.s1 .ps-icon { background: rgba(255,71,87,0.1); }
+  .process-step.s2 .ps-icon { background: rgba(200,169,110,0.15); }
+  .process-step.s3 .ps-icon { background: rgba(59,130,246,0.1); }
+  .process-step .ps-text {
+    font-size: 15px; font-weight: 800; line-height: 1.5;
+  }
+  .process-step .ps-text span { font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; }
+  .flow-arrow {
+    font-size: 24px; color: var(--border); margin: 4px 0;
+  }
+
+  /* ========== WHAT — 상품 비주얼 카드 ========== */
+  .what-visual { padding: 0 0 20px; }
+
+  .what-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .what-row .visual-card { margin-bottom: 0; }
+  .what-row .vc-top { padding: 20px 14px; }
+  .what-row .vc-icon { font-size: 36px; margin-bottom: 8px; }
+  .what-row .vc-name { font-size: 15px; margin-bottom: 4px; }
+  .what-row .vc-price-visual { gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .what-row .vc-price-visual .vp-old { font-size: 18px; }
+  .what-row .vc-price-visual .vp-new { font-size: 28px; }
+  .what-row .vc-price-visual .vp-new small { font-size: 14px; }
+  .what-row .vc-discount { font-size: 15px; padding: 5px 14px; }
+  .what-row .vc-bottom { padding: 10px 14px; gap: 4px; flex-direction: column; align-items: stretch; }
+  .what-row .vc-chip { font-size: 10px; padding: 4px 8px; justify-content: center; }
+  .what-row .vc-tag { font-size: 10px; padding: 3px 10px; margin-bottom: 8px; }
+
+  /* 상품 카드 — 대형 비주얼 */
+  .visual-card {
+    border-radius: 20px; overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .vc-top {
+    padding: 28px 24px; text-align: center; color: #fff; position: relative; overflow: hidden;
+  }
+  .vc-top.red-bg { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .vc-top.green-bg { background: linear-gradient(135deg, #C8A96E, #DBBF8A); color: #fff; }
+  .vc-top.blue-bg { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+
+  .vc-top::before {
+    content: ''; position: absolute;
+    top: -40px; right: -40px; width: 140px; height: 140px;
+    background: rgba(255,255,255,0.1); border-radius: 50%;
+  }
+  .vc-tag {
+    display: inline-block; background: rgba(255,255,255,0.2);
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-bottom: 12px;
+    position: relative;
+  }
+  .vc-icon { font-size: 48px; margin-bottom: 10px; position: relative; }
+  .vc-name { font-size: 22px; font-weight: 900; margin-bottom: 6px; position: relative; }
+
+  .vc-price-visual {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    position: relative; margin-top: 10px;
+  }
+  .vc-price-visual .vp-old {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    text-decoration: line-through;
+    position: relative;
+  }
+  .vc-price-visual .vp-arrow { font-size: 24px; color: rgba(255,255,255,0.6); }
+  .vc-price-visual .vp-new {
+    font-family: 'Outfit', sans-serif;
+    font-size: 44px; font-weight: 900;
+  }
+  .vc-price-visual .vp-new small { font-size: 20px; }
+  .vc-discount {
+    display: inline-block;
+    background: rgba(0,0,0,0.2);
+    padding: 6px 18px; border-radius: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px; font-weight: 900;
+    margin-top: 12px; position: relative;
+  }
+
+  .vc-bottom {
+    background: #fff; padding: 20px 24px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center;
+  }
+  .vc-bottom .vc-chip {
+    display: flex; align-items: center; gap: 5px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 14px;
+    font-size: 12px; font-weight: 700; color: var(--text-dim);
+  }
+  .vc-chip .chip-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .vc-chip .chip-dot.red { background: var(--red); }
+  .vc-chip .chip-dot.green { background: #C8A96E; }
+  .vc-chip .chip-dot.blue { background: var(--blue); }
+
+  /* 마케팅 포토 그리드 */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .photo-grid img {
+    width: 100%; height: 140px;
+    object-fit: cover; border-radius: 14px;
+    display: block;
+  }
+
+  .marketing-icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .mk-icon-item {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 8px;
+    text-align: center;
+  }
+  .mk-icon-item .mk-emoji { font-size: 36px; margin-bottom: 6px; }
+  .mk-icon-item .mk-name { font-size: 13px; font-weight: 800; color: var(--text); }
+  .mk-icon-item .mk-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ========== 비교 인포그래픽 ========== */
+  .compare-visual {
+    padding: 0 0 24px;
+  }
+  .vs-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .vs-card {
+    display: flex; align-items: center;
+    border-radius: 14px; padding: 16px 20px;
+    gap: 14px;
+  }
+  .vs-card.type-old {
+    background: #fff5f5; border: 1.5px solid rgba(255,71,87,0.15);
+  }
+  .vs-card.type-pkg {
+    background: #fffbeb; border: 1.5px solid rgba(243,156,18,0.15);
+  }
+  .vs-card.type-den {
+    background: #FAF5ED; border: 1.5px solid rgba(200,169,110,0.2);
+  }
+  .vs-card .vs-label {
+    font-size: 13px; font-weight: 800; width: 50px; flex-shrink: 0;
+  }
+  .vs-card.type-old .vs-label { color: var(--red); }
+  .vs-card.type-pkg .vs-label { color: var(--orange); }
+  .vs-card.type-den .vs-label { color: #C8A96E; }
+  .vs-card .vs-bar {
+    flex: 1; height: 32px; border-radius: 16px; position: relative;
+    display: flex; align-items: center;
+  }
+  .vs-card .vs-bar-fill {
+    height: 100%; border-radius: 16px;
+    display: flex; align-items: center; justify-content: flex-end; padding-right: 12px;
+    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 900; color: #fff;
+  }
+  .vs-card.type-old .vs-bar-fill { background: linear-gradient(90deg, #ff8787, var(--red)); width: 100%; }
+  .vs-card.type-pkg .vs-bar-fill { background: linear-gradient(90deg, #ffc048, var(--orange)); width: 70%; }
+  .vs-card.type-den .vs-bar-fill { background: linear-gradient(90deg, #DBBF8A, #C8A96E); width: 53%; }
+  .vs-card .vs-price {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px; font-weight: 900; flex-shrink: 0; width: 75px; text-align: right;
+  }
+  .vs-card.type-old .vs-price { color: var(--red); }
+  .vs-card.type-pkg .vs-price { color: var(--orange); }
+  .vs-card.type-den .vs-price { color: #C8A96E; }
+
+  .save-result {
+    background: linear-gradient(135deg, #0d1b2a, #1a2d3d);
+    border-radius: 16px; padding: 24px; text-align: center; color: #fff;
+  }
+  .save-result .sr-label {
+    font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .save-result .sr-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 56px; font-weight: 900; color: #C8A96E;
+    text-shadow: 0 0 30px rgba(254,229,0,0.4);
+  }
+  .save-result .sr-num small { font-size: 24px; color: #fff; }
+  .save-result .sr-sub {
+    font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 4px;
+  }
+
+  /* ========== 한정 배너 ========== */
+  .limited-banner {
+    background: var(--red-soft);
+    border: 1.5px solid rgba(255,71,87,0.2);
+    border-radius: 12px;
+    padding: 16px 20px; text-align: center;
+    margin: 24px 0;
+  }
+  .limited-banner span {
+    font-size: 16px; font-weight: 900; color: var(--red);
+  }
+
+  /* ========== 상담 폼 ========== */
+  .form-section { padding: 0 0 40px; }
+  .form-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 28px 24px;
+  }
+  .form-card h2 {
+    font-size: 20px; font-weight: 900; text-align: center; margin-bottom: 6px;
+  }
+  .form-card h2 em { color: #C8A96E; font-style: normal; }
+  .form-subtitle {
+    font-size: 13px; color: var(--text-muted); text-align: center; margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 700;
+    color: var(--text-dim); margin-bottom: 6px;
+  }
+  .form-group label .required { color: var(--red); margin-left: 2px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'Noto Sans KR', sans-serif; font-size: 14px;
+    color: var(--text); background: #fff;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: #C8A96E; }
+  .form-group textarea { height: 80px; resize: vertical; }
+
+  .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+  .checkbox-group label {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 600; color: var(--text); cursor: pointer;
+  }
+  .checkbox-group input[type="checkbox"] {
+    width: 20px; height: 20px; accent-color: #C8A96E; cursor: pointer;
+  }
+
+  .btn-submit {
+    width: 100%; padding: 16px;
+    background: var(--brown); color: #F5E6CA;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px; font-weight: 800;
+    border: none; border-radius: 12px; cursor: pointer;
+    margin-top: 8px; transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(59,39,35,0.3);
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(59,39,35,0.4);
+  }
+
+  .form-checks {
+    display: flex; justify-content: center; gap: 14px; margin-top: 16px;
+  }
+  .form-checks span {
+    font-size: 12px; color: var(--text-muted);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .form-checks .ck { color: #C8A96E; font-weight: 900; }
+
+  /* ========== 푸터 ========== */
+  footer {
+    text-align: center; padding: 24px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px; font-weight: 800;
+    letter-spacing: 3px; color: #C8A96E; margin-bottom: 4px;
+  }
+  footer p { font-size: 12px; color: var(--text-muted); }
+
+  /* ========== 플로팅 CTA ========== */
+  .floating-cta {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #fff; border-top: 1px solid var(--border);
+    padding: 12px 20px; z-index: 100;
+    display: flex; justify-content: center;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+  .floating-cta a {
+    display: block; max-width: 480px; width: 100%;
+    padding: 14px; background: var(--brown); color: #F5E6CA;
+    font-size: 16px; font-weight: 800; text-align: center;
+    text-decoration: none; border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(59,39,35,0.2);
+  }
+
+  /* ========== 스크롤 애니메이션 ========== */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 히어로 ==================== -->
+<div class="hero">
+  <div class="hero-brand">DENNOTE</div>
+  <div class="hero-badge">DENTAL EXPO 2026 한정</div>
+  <h1>원장님, 치과 지출을<br><em>30% 줄여</em>드립니다!</h1>
+  <div class="hero-stat">
+    <span class="big-num">30</span>
+    <span class="big-unit">%</span>
+  </div>
+  <div class="hero-stat-label">연간 지출 절감률</div>
+</div>
+
+<div class="container">
+
+  <!-- ==================== WHY ==================== -->
+  <div class="fade-in">
+    <div style="padding-top:36px">
+      <div class="circle-badge red">WHY</div>
+      <div class="section-headline">지금 <span class="red-em">새고 있는</span> 비용 구조</div>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-icon">&#x1F4B8;</div>
+        <div class="pain-num">&#8593; 40%</div>
+        <div class="pain-label">단가 손해</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">&#x1F4E6;</div>
+        <div class="pain-num">&#8593; 35%</div>
+        <div class="pain-label">재고 손실</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">&#x1F512;</div>
+        <div class="pain-num">&#8593; 25%</div>
+        <div class="pain-label">자금 묶임</div>
+      </div>
+    </div>
+
+    <div class="leak-chart">
+      <div class="chart-title">&#x1F4CA; 1케이스 원가 비교</div>
+      <div class="bar-row">
+        <div class="bar-label">기존</div>
+        <div class="bar-track">
+          <div class="bar-fill old" style="width:100%">130,000</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">패키지</div>
+        <div class="bar-track">
+          <div class="bar-fill pkg" style="width:70%">91,000</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">덴노트</div>
+        <div class="bar-track">
+          <div class="bar-fill den" style="width:53%">69,500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HOW ==================== -->
+  <div class="fade-in">
+    <div class="circle-badge green">HOW</div>
+    <div class="section-headline">덴노트 <em style="color:#C8A96E">3단계</em> 솔루션</div>
+
+    <div class="how-visual">
+      <div class="process-flow">
+        <div class="process-step s1">
+          <div class="ps-icon">&#x274C;</div>
+          <div class="ps-text">선결제 부담 제거<span>패키지 할인가를 단품에 그대로 적용</span></div>
+        </div>
+        <div class="flow-arrow">&#x25BC;</div>
+        <div class="process-step s2">
+          <div class="ps-icon">&#x1F4E6;</div>
+          <div class="ps-text">필요한 만큼만 주문<span>재고 리스크 제로, 낭비 없는 구조</span></div>
+        </div>
+        <div class="flow-arrow">&#x25BC;</div>
+        <div class="process-step s3">
+          <div class="ps-icon">&#x1F4C8;</div>
+          <div class="ps-text">환자 유입 마케팅<span>문화센터 &#183; 맘카페 &#183; 뉴스 마케팅</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WHAT 01: 커스텀 어버트먼트 ==================== -->
+  <div class="fade-in">
+    <div class="circle-badge blue">WHAT</div>
+    <div class="section-headline">지금 받을 수 있는 <em style="color:#C8A96E">3가지 혜택</em></div>
+
+    <div class="what-visual">
+      <div class="what-row">
+        <div class="visual-card">
+          <div class="vc-top red-bg">
+            <div class="vc-tag">OFFER 01</div>
+            <div class="vc-icon">&#x1F9B7;</div>
+            <div class="vc-name">커스텀 어버트먼트</div>
+            <div class="vc-price-visual">
+              <span class="vp-old">45,000</span>
+              <span class="vp-arrow">&#10132;</span>
+              <span class="vp-new">22,500<small>원</small></span>
+            </div>
+            <div class="vc-discount">50% OFF</div>
+          </div>
+          <div class="vc-bottom">
+            <div class="vc-chip"><span class="chip-dot red"></span> 자체 CAD/CAM</div>
+            <div class="vc-chip"><span class="chip-dot red"></span> 환자 맞춤형</div>
+            <div class="vc-chip"><span class="chip-dot red"></span> 빠른 납기</div>
+            <div class="vc-chip"><span class="chip-dot red"></span> 품질 보증</div>
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="vc-top green-bg">
+            <div class="vc-tag">OFFER 02</div>
+            <div class="vc-icon">&#x2699;&#xFE0F;</div>
+            <div class="vc-name">덴티스 임플란트<br>단품주문</div>
+            <div class="vc-price-visual">
+              <span class="vp-old">40,000~</span>
+              <span class="vp-arrow">&#10132;</span>
+              <span class="vp-new">28,000<small>원~</small></span>
+            </div>
+            <div class="vc-discount">패키지 할인가</div>
+          </div>
+          <div class="vc-bottom">
+            <div class="vc-chip"><span class="chip-dot green"></span> 선결제 불필요</div>
+            <div class="vc-chip"><span class="chip-dot green"></span> 단품 주문 OK</div>
+            <div class="vc-chip"><span class="chip-dot green"></span> 재고 부담 제로</div>
+            <div class="vc-chip"><span class="chip-dot green"></span> 패키지가 동일</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 한정 강조 -->
+      <div style="background:linear-gradient(135deg,#ff4757,#ff6b81);border-radius:14px;padding:18px 20px;text-align:center;margin-bottom:16px;box-shadow:0 4px 16px rgba(255,71,87,0.3)">
+        <div style="font-size:28px;margin-bottom:6px">&#x23F0;</div>
+        <div style="color:#fff;font-size:18px;font-weight:900;line-height:1.6">문의 접수하신 분에 한해<br>제공됩니다!</div>
+        <div style="display:inline-block;background:rgba(255,255,255,0.2);color:#fff;padding:6px 20px;border-radius:20px;font-size:13px;font-weight:800;margin-top:10px;letter-spacing:1px">EXPO 기간 한정 혜택</div>
+      </div>
+
+      <!-- WHAT 03: 마케팅 -->
+      <div class="visual-card">
+        <div class="vc-top blue-bg">
+          <div class="vc-tag">OFFER 03</div>
+          <div class="vc-icon">&#x1F4E3;</div>
+          <div class="vc-name">환자 유입 마케팅 제공</div>
+        </div>
+        <div class="vc-bottom" style="padding:0">
+          <div style="width:100%">
+            <div class="photo-grid" style="padding:16px 16px 0">
+              <img src="f5a0d781cc149e1a3.jpg" alt="문화센터 강의">
+              <img src="fb80d629b080448aa.jpg" alt="건강 세미나">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="marketing-icons">
+        <div class="mk-icon-item">
+          <div class="mk-emoji">&#x1F3EB;</div>
+          <div class="mk-name">문화센터</div>
+          <div class="mk-sub">건강 강좌</div>
+        </div>
+        <div class="mk-icon-item">
+          <div class="mk-emoji">&#x1F469;&#x200D;&#x1F469;&#x200D;&#x1F467;</div>
+          <div class="mk-name">지역맘카페</div>
+          <div class="mk-sub">후기/정보</div>
+        </div>
+        <div class="mk-icon-item">
+          <div class="mk-emoji">&#x1F4F0;</div>
+          <div class="mk-name">뉴스</div>
+          <div class="mk-sub">신뢰도 강화</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 비교 인포그래픽 ==================== -->
+  <div class="fade-in">
+    <div class="compare-visual">
+      <div class="section-headline">1케이스, <em style="color:#C8A96E">얼마나 아끼나?</em></div>
+      <div class="vs-cards">
+        <div class="vs-card type-old">
+          <div class="vs-label">기존</div>
+          <div class="vs-bar"><div class="vs-bar-fill"></div></div>
+          <div class="vs-price">130,000</div>
+        </div>
+        <div class="vs-card type-pkg">
+          <div class="vs-label">패키지</div>
+          <div class="vs-bar"><div class="vs-bar-fill"></div></div>
+          <div class="vs-price">91,000</div>
+        </div>
+        <div class="vs-card type-den">
+          <div class="vs-label">덴노트</div>
+          <div class="vs-bar"><div class="vs-bar-fill"></div></div>
+          <div class="vs-price">69,500</div>
+        </div>
+      </div>
+
+      <div class="save-result">
+        <div class="sr-label">1케이스당 절감액</div>
+        <div class="sr-num">60,500<small>원</small></div>
+        <div class="sr-sub">기존 대비 <strong style="color:#C8A96E">-46.5%</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 한정 배너 ==================== -->
+  <div class="limited-banner">
+    <span>&#x23F0; 문의 접수하신 분에 한해 적용됩니다</span>
+  </div>
+
+  <!-- ==================== 상담 신청 폼 ==================== -->
+  <div class="form-section fade-in" id="apply">
+    <div class="form-card">
+      <h2><em>무료</em> 상담 신청</h2>
+      <p class="form-subtitle">작성해주시면 빠르게 연락드리겠습니다</p>
+
+      <form id="consultForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>치과명 <span class="required">*</span></label>
+          <input type="text" name="clinic" placeholder="OO치과의원" required>
+        </div>
+        <div class="form-group">
+          <label>원장님 성함 <span class="required">*</span></label>
+          <input type="text" name="name" placeholder="홍길동" required>
+        </div>
+        <div class="form-group">
+          <label>연락처 <span class="required">*</span></label>
+          <input type="tel" name="phone" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label>월 평균 임플란트 시술 건수</label>
+          <select name="cases">
+            <option value="">선택해주세요</option>
+            <option value="1-5">1~5건</option>
+            <option value="6-10">6~10건</option>
+            <option value="11-20">11~20건</option>
+            <option value="21-50">21~50건</option>
+            <option value="50+">50건 이상</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>관심 항목</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="interest" value="abutment"> 커스텀 어버트먼트 50% 할인</label>
+            <label><input type="checkbox" name="interest" value="implant"> 덴티스 임플란트 단품주문 (패키지가)</label>
+            <label><input type="checkbox" name="interest" value="marketing"> 환자 유입 마케팅 (문화센터/맘카페/뉴스)</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>기타 문의사항</label>
+          <textarea name="memo" placeholder="궁금한 점이 있으시면 남겨주세요"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">상담 신청하기</button>
+      </form>
+
+      <div class="form-checks">
+        <span><span class="ck">&#x2713;</span> 비용 분석 무료</span>
+        <span><span class="ck">&#x2713;</span> 소량 테스트 가능</span>
+        <span><span class="ck">&#x2713;</span> 계약 부담 없음</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">DENNOTE</div>
+  <p>(주)세이브코어 &#8212; 치과 재료 비용 최적화 플랫폼</p>
+  <p style="margin-top:4px">&#x260E; 010-9469-4267</p>
+</footer>
+
+<div class="floating-cta">
+  <a href="#apply">&#x1F4CB; 무료 상담 신청하기</a>
+</div>
+
+<script>
+// 스크롤 애니메이션
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// 폼 제출
+// TODO: 서버 배포 후 아래 URL을 실제 API 엔드포인트로 교체
+const API_URL = '/api/consult';
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = '접수 중...';
+
+  const data = {
+    clinic: form.clinic.value,
+    name: form.name.value,
+    phone: form.phone.value,
+    cases: form.cases.value,
+    interest: [...form.querySelectorAll('input[name="interest"]:checked')].map(el => el.value),
+    memo: form.memo.value,
+    submitted_at: new Date().toISOString()
+  };
+
+  fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('서버 오류');
+    alert('상담 신청이 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
+    form.reset();
+  })
+  .catch(() => {
+    alert('접수 중 오류가 발생했습니다.\n전화 문의: 010-9469-4267');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = '상담 신청하기';
+  });
+}
+</script>
+</body>
+</html>

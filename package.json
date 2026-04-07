@@ -1,0 +1,12 @@
+{
+  "name": "dennote-landing",
+  "version": "1.0.0",
+  "description": "덴노트 랜딩페이지 서버",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
