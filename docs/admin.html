@@ -211,10 +211,7 @@
 <body>
 
 <div class="header">
-  <div style="display:flex;align-items:center;gap:12px">
-    <img src="logo.png" alt="Savecore" style="height:32px">
-    <h1>상담 접수 관리</h1>
-  </div>
+  <h1>세이브코어 상담 접수 관리</h1>
   <div class="header-right">
     <span class="count" id="totalCount">0건</span>
     <button class="btn" onclick="loadData()">새로고침</button>
@@ -430,6 +427,9 @@ function deleteItem(id) {
   if (!confirm('삭제하시겠습니까?')) return;
   if (isLocal) {
     fetch('/api/admin/consultations/' + id, { method: 'DELETE' })
+      .then(() => loadData());
+  } else {
+    fetch(ADMIN_API + '?action=delete&id=' + id)
       .then(() => loadData());
   }
 }
