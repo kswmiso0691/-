@@ -518,8 +518,9 @@
 <body>
 
 <!-- ==================== 히어로 ==================== -->
-<div class="hero">
-  <img src="logo.png" alt="Savecore" style="height:60px;margin-bottom:8px">
+<div class="hero" style="position:relative">
+  <img src="logo.png" alt="Savecore" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:200px;opacity:0.15;pointer-events:none;z-index:0">
+  <div style="position:relative;z-index:1">
   <div class="hero-badge">DENTAL EXPO 2026 한정</div>
   <h1>원장님, 치과 지출을<br><em>30% 줄여</em>드립니다!</h1>
   <div class="hero-stat">
@@ -527,6 +528,7 @@
     <span class="big-unit">%</span>
   </div>
   <div class="hero-stat-label">연간 지출 절감률</div>
+  </div>
 </div>
 
 <div class="container">
