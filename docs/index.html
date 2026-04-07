@@ -830,24 +830,40 @@ function handleSubmit(e) {
     submitted_at: new Date().toISOString()
   };
 
-  fetch(API_URL, {
-    method: 'POST',
-    headers: isLocal ? { 'Content-Type': 'application/json' } : {},
-    body: JSON.stringify(data),
-    mode: isLocal ? 'same-origin' : 'no-cors'
-  })
-  .then(res => {
-    if (isLocal && !res.ok) throw new Error('서버 오류');
-    alert('상담 신청이 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
-    form.reset();
-  })
-  .catch(() => {
-    alert('접수 중 오류가 발생했습니다.\n전화 문의: 010-9469-4267');
-  })
-  .finally(() => {
-    btn.disabled = false;
-    btn.textContent = '상담 신청하기';
-  });
+  if (isLocal) {
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('서버 오류');
+      alert('상담 신청이 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
+      form.reset();
+    })
+    .catch(() => {
+      alert('접수 중 오류가 발생했습니다.\n전화 문의: 010-9469-4267');
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = '상담 신청하기';
+    });
+  } else {
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
+    fetch(API_URL, { method: 'POST', body: formData })
+    .then(() => {
+      alert('상담 신청이 완료되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
+      form.reset();
+    })
+    .catch(() => {
+      alert('접수 중 오류가 발생했습니다.\n전화 문의: 010-9469-4267');
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.textContent = '상담 신청하기';
+    });
+  }
 }
 </script>
 </body>
