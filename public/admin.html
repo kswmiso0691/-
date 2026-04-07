@@ -13,17 +13,24 @@
     color: #333;
     padding: 24px;
   }
+
+  /* 헤더 */
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .header h1 {
-    font-size: 22px;
-    font-weight: 900;
+  .header h1 { font-size: 22px; font-weight: 900; }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
-  .header .count {
+  .count {
     background: #3B2723;
     color: #F5E6CA;
     padding: 6px 16px;
@@ -31,111 +38,141 @@
     font-size: 14px;
     font-weight: 700;
   }
-  .refresh-btn {
+  .btn {
     background: #3B2723;
     color: #F5E6CA;
     border: none;
-    padding: 8px 20px;
+    padding: 8px 16px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     font-family: 'Noto Sans KR', sans-serif;
   }
-  .refresh-btn:hover { opacity: 0.85; }
+  .btn:hover { opacity: 0.85; }
+  .btn-excel {
+    background: #1D6F42;
+    color: #fff;
+  }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 14px;
-  }
-  .card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    padding: 20px;
-    position: relative;
-  }
-  .card .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  .card .card-id {
-    font-size: 12px;
-    color: #999;
-    font-weight: 700;
-  }
-  .card .card-time {
-    font-size: 12px;
-    color: #999;
-  }
-  .card .clinic-name {
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 4px;
-  }
-  .card .doctor-name {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 12px;
-  }
-  .card .info-row {
+  /* 필터 바 */
+  .filter-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #555;
-  }
-  .card .info-row .label {
-    font-weight: 700;
-    color: #3B2723;
-    min-width: 60px;
-  }
-  .card .interest-tags {
-    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
     flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 10px;
   }
-  .card .interest-tags span {
-    background: #FAF5ED;
-    border: 1px solid #E8E2DA;
-    border-radius: 100px;
-    padding: 4px 10px;
-    font-size: 11px;
+  .filter-bar label {
+    font-size: 13px;
     font-weight: 700;
-    color: #6B5550;
+    color: #666;
   }
-  .card .memo-text {
-    margin-top: 10px;
-    padding: 10px;
-    background: #f9f9f9;
+  .filter-bar select,
+  .filter-bar input[type="date"] {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 13px;
-    color: #666;
-    line-height: 1.6;
+    background: #fff;
   }
-  .card .delete-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #ccc;
-    padding: 4px;
+  .filter-bar .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .card .delete-btn:hover { color: #ff4757; }
-  .card .phone-link {
+
+  /* 테이블 */
+  .table-wrap {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e0e0e0;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 800px;
+  }
+  thead th {
+    background: #3B2723;
+    color: #F5E6CA;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 700;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  thead th:first-child { border-radius: 14px 0 0 0; }
+  thead th:last-child { border-radius: 0 14px 0 0; }
+  tbody tr { border-bottom: 1px solid #f0f0f0; }
+  tbody tr:hover { background: #faf8f5; }
+  tbody tr.checked { background: #f0f8f0; }
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: middle;
+  }
+  .phone-link {
     color: #3B2723;
     text-decoration: none;
     font-weight: 700;
   }
-  .card .phone-link:hover { text-decoration: underline; }
+  .phone-link:hover { text-decoration: underline; }
+  .interest-tag {
+    display: inline-block;
+    background: #FAF5ED;
+    border: 1px solid #E8E2DA;
+    border-radius: 100px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #6B5550;
+    margin: 1px 2px;
+  }
+  .memo-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+    cursor: pointer;
+  }
+  .memo-cell:hover {
+    white-space: normal;
+    overflow: visible;
+  }
+
+  /* 확인 체크 */
+  .check-cell {
+    text-align: center;
+  }
+  .check-cell input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #3B2723;
+  }
+
+  /* 삭제 */
+  .delete-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ccc;
+    padding: 4px;
+  }
+  .delete-btn:hover { color: #ff4757; }
+
+  /* 시간 뱃지 */
+  .time-badge {
+    font-size: 11px;
+    color: #999;
+    white-space: nowrap;
+  }
 
   .empty {
     text-align: center;
@@ -143,21 +180,113 @@
     color: #999;
     font-size: 16px;
   }
+
+  /* 통계 바 */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: #3B2723;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div>
-    <h1>상담 접수 관리</h1>
-  </div>
-  <div style="display:flex;align-items:center;gap:10px">
+  <h1>상담 접수 관리</h1>
+  <div class="header-right">
     <span class="count" id="totalCount">0건</span>
-    <button class="refresh-btn" onclick="loadData()">새로고침</button>
+    <button class="btn" onclick="loadData()">새로고침</button>
+    <button class="btn btn-excel" onclick="downloadExcel()">엑셀 다운로드</button>
   </div>
 </div>
 
-<div class="cards" id="cardList"></div>
+<div class="stats-bar" id="statsBar">
+  <div class="stat-item">
+    <div class="stat-num" id="statTotal">0</div>
+    <div class="stat-label">전체 접수</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="statChecked">0</div>
+    <div class="stat-label">확인 완료</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="statUnchecked">0</div>
+    <div class="stat-label">미확인</div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-group">
+    <label>날짜</label>
+    <input type="date" id="filterDate" onchange="applyFilter()">
+  </div>
+  <div class="filter-group">
+    <label>시간대</label>
+    <select id="filterTime" onchange="applyFilter()">
+      <option value="">전체</option>
+      <option value="09">09시</option>
+      <option value="10">10시</option>
+      <option value="11">11시</option>
+      <option value="12">12시</option>
+      <option value="13">13시</option>
+      <option value="14">14시</option>
+      <option value="15">15시</option>
+      <option value="16">16시</option>
+      <option value="17">17시</option>
+      <option value="18">18시</option>
+      <option value="19">19시</option>
+      <option value="20">20시</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>상태</label>
+    <select id="filterStatus" onchange="applyFilter()">
+      <option value="">전체</option>
+      <option value="checked">확인 완료</option>
+      <option value="unchecked">미확인</option>
+    </select>
+  </div>
+  <button class="btn" style="font-size:12px;padding:6px 12px" onclick="resetFilter()">초기화</button>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>확인</th>
+        <th>#</th>
+        <th>접수 시각</th>
+        <th>병원명</th>
+        <th>성함</th>
+        <th>연락처</th>
+        <th>시술건수</th>
+        <th>관심항목</th>
+        <th>메모</th>
+        <th>삭제</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
 <div class="empty" id="emptyMsg" style="display:none">접수된 상담이 없습니다.</div>
 
 <script>
@@ -170,65 +299,177 @@ const interestMap = {
 const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 const ADMIN_API = isLocal ? '/api/admin/consultations' : 'https://script.google.com/macros/s/AKfycbyJk8H-F5Q1PdurNwBpLHC7wT_8-FAsEEEyBb7lri-8NQ1MZufRFZyjWKy3pI-SxRGn-g/exec';
 
+let allRows = [];
+let checkedIds = JSON.parse(localStorage.getItem('checkedIds') || '{}');
+
 function loadData() {
   fetch(ADMIN_API)
     .then(r => r.json())
     .then(rows => {
-      document.getElementById('totalCount').textContent = rows.length + '건';
-      const container = document.getElementById('cardList');
-      const empty = document.getElementById('emptyMsg');
-
-      if (rows.length === 0) {
-        container.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-      }
-
-      empty.style.display = 'none';
-      container.innerHTML = rows.map(row => {
-        let interests = [];
-        try {
-          if (typeof row.interest === 'string') {
-            try { interests = JSON.parse(row.interest); } catch(e) {
-              interests = row.interest.split(',').map(s => s.trim()).filter(Boolean);
-            }
-          } else if (Array.isArray(row.interest)) {
-            interests = row.interest;
-          }
-        } catch(e) {}
-
-        const tagsHtml = interests.map(i =>
-          '<span>' + (interestMap[i] || i) + '</span>'
-        ).join('');
-
-        const time = new Date(row.submitted_at || row.created_at).toLocaleString('ko-KR');
-
-        return `
-          <div class="card">
-            <button class="delete-btn" onclick="deleteItem(${row.id})" title="삭제">&times;</button>
-            <div class="card-top">
-              <span class="card-id">#${row.id}</span>
-              <span class="card-time">${time}</span>
-            </div>
-            <div class="clinic-name">${esc(row.clinic)}</div>
-            <div class="doctor-name">${esc(row.name)} 원장님</div>
-            <div class="info-row">
-              <span class="label">연락처</span>
-              <a href="tel:${row.phone}" class="phone-link">${esc(row.phone)}</a>
-            </div>
-            ${row.cases ? `<div class="info-row"><span class="label">시술건수</span> 월 ${esc(row.cases)}건</div>` : ''}
-            ${tagsHtml ? `<div class="interest-tags">${tagsHtml}</div>` : ''}
-            ${row.memo ? `<div class="memo-text">${esc(row.memo)}</div>` : ''}
-          </div>
-        `;
-      }).join('');
+      allRows = rows;
+      applyFilter();
     });
+}
+
+function applyFilter() {
+  const dateVal = document.getElementById('filterDate').value;
+  const timeVal = document.getElementById('filterTime').value;
+  const statusVal = document.getElementById('filterStatus').value;
+
+  let filtered = allRows.filter(row => {
+    const dt = new Date(row.submitted_at || row.created_at);
+    if (dateVal) {
+      const rowDate = dt.toISOString().slice(0, 10);
+      if (rowDate !== dateVal) return false;
+    }
+    if (timeVal) {
+      const rowHour = String(dt.getHours()).padStart(2, '0');
+      if (rowHour !== timeVal) return false;
+    }
+    if (statusVal === 'checked' && !checkedIds[row.id]) return false;
+    if (statusVal === 'unchecked' && checkedIds[row.id]) return false;
+    return true;
+  });
+
+  renderTable(filtered);
+  updateStats();
+}
+
+function renderTable(rows) {
+  document.getElementById('totalCount').textContent = rows.length + '건';
+  const tbody = document.getElementById('tableBody');
+  const empty = document.getElementById('emptyMsg');
+
+  if (rows.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  tbody.innerHTML = rows.map(row => {
+    let interests = [];
+    try {
+      if (typeof row.interest === 'string') {
+        try { interests = JSON.parse(row.interest); } catch(e) {
+          interests = row.interest.split(',').map(s => s.trim()).filter(Boolean);
+        }
+      } else if (Array.isArray(row.interest)) {
+        interests = row.interest;
+      }
+    } catch(e) {}
+
+    const tagsHtml = interests.map(i =>
+      '<span class="interest-tag">' + (interestMap[i] || i) + '</span>'
+    ).join('');
+
+    const dt = new Date(row.submitted_at || row.created_at);
+    const dateStr = dt.toLocaleDateString('ko-KR');
+    const timeStr = dt.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+    const isChecked = checkedIds[row.id] ? 'checked' : '';
+    const rowClass = checkedIds[row.id] ? 'checked' : '';
+
+    return `
+      <tr class="${rowClass}" id="row-${row.id}">
+        <td class="check-cell">
+          <input type="checkbox" ${isChecked} onchange="toggleCheck(${row.id}, this)">
+        </td>
+        <td style="color:#999;font-weight:700">${row.id}</td>
+        <td><span class="time-badge">${dateStr}<br>${timeStr}</span></td>
+        <td style="font-weight:900">${esc(row.clinic)}</td>
+        <td>${esc(row.name)}</td>
+        <td><a href="tel:${row.phone}" class="phone-link">${esc(row.phone)}</a></td>
+        <td style="text-align:center">${row.cases ? '월 ' + esc(String(row.cases)) + '건' : '-'}</td>
+        <td>${tagsHtml || '-'}</td>
+        <td class="memo-cell" title="${esc(row.memo || '')}">${esc(row.memo || '-')}</td>
+        <td><button class="delete-btn" onclick="deleteItem(${row.id})" title="삭제">&times;</button></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function updateStats() {
+  const total = allRows.length;
+  const checked = allRows.filter(r => checkedIds[r.id]).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statChecked').textContent = checked;
+  document.getElementById('statUnchecked').textContent = total - checked;
+}
+
+function toggleCheck(id, el) {
+  if (el.checked) {
+    checkedIds[id] = true;
+  } else {
+    delete checkedIds[id];
+  }
+  localStorage.setItem('checkedIds', JSON.stringify(checkedIds));
+  const row = document.getElementById('row-' + id);
+  if (row) row.className = el.checked ? 'checked' : '';
+  updateStats();
+}
+
+function resetFilter() {
+  document.getElementById('filterDate').value = '';
+  document.getElementById('filterTime').value = '';
+  document.getElementById('filterStatus').value = '';
+  applyFilter();
 }
 
 function deleteItem(id) {
   if (!confirm('삭제하시겠습니까?')) return;
-  fetch('/api/admin/consultations/' + id, { method: 'DELETE' })
-    .then(() => loadData());
+  if (isLocal) {
+    fetch('/api/admin/consultations/' + id, { method: 'DELETE' })
+      .then(() => loadData());
+  }
+}
+
+function downloadExcel() {
+  if (allRows.length === 0) {
+    alert('다운로드할 데이터가 없습니다.');
+    return;
+  }
+
+  const BOM = '\uFEFF';
+  const headers = ['번호', '접수시각', '병원명', '성함', '연락처', '시술건수', '관심항목', '메모', '확인여부'];
+  const csvRows = [headers.join(',')];
+
+  allRows.forEach(row => {
+    let interests = [];
+    try {
+      if (typeof row.interest === 'string') {
+        try { interests = JSON.parse(row.interest); } catch(e) {
+          interests = row.interest.split(',').map(s => s.trim()).filter(Boolean);
+        }
+      } else if (Array.isArray(row.interest)) {
+        interests = row.interest;
+      }
+    } catch(e) {}
+    const interestStr = interests.map(i => interestMap[i] || i).join(' / ');
+
+    const dt = new Date(row.submitted_at || row.created_at);
+    const timeStr = dt.toLocaleString('ko-KR');
+    const status = checkedIds[row.id] ? '확인완료' : '미확인';
+
+    csvRows.push([
+      row.id,
+      '"' + timeStr + '"',
+      '"' + (row.clinic || '').replace(/"/g, '""') + '"',
+      '"' + (row.name || '').replace(/"/g, '""') + '"',
+      '"' + (row.phone || '').replace(/"/g, '""') + '"',
+      row.cases || '',
+      '"' + interestStr.replace(/"/g, '""') + '"',
+      '"' + (row.memo || '').replace(/"/g, '""') + '"',
+      status
+    ].join(','));
+  });
+
+  const blob = new Blob([BOM + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '상담접수_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function esc(str) {
@@ -238,7 +479,6 @@ function esc(str) {
 }
 
 loadData();
-// 30초마다 자동 새로고침
 setInterval(loadData, 30000);
 </script>
 </body>
