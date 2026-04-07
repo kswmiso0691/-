@@ -627,6 +627,38 @@
     justify-content: center;
   }
 
+  .coupon-offers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px 0;
+    z-index: 1;
+  }
+
+  .coupon-offers-list li {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(60,30,30,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .coupon-offers-list li:last-child {
+    border-bottom: none;
+  }
+
+  .coupon-offers-list .offer-badge {
+    display: inline-block;
+    background: #3C1E1E;
+    color: #FEE500;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
   .coupon {
     width: 120mm;
     height: 68mm;
@@ -637,8 +669,8 @@
   }
 
   .coupon-front {
-    background: linear-gradient(135deg, #0d1b2a, #1a2d3d);
-    color: #fff;
+    background: linear-gradient(135deg, #FEE500, #F5D800);
+    color: #3C1E1E;
     padding: 22px 28px;
     height: 100%;
     display: flex;
@@ -655,7 +687,7 @@
     right: -30px;
     width: 120px;
     height: 120px;
-    background: radial-gradient(circle, rgba(0,184,148,0.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(60,30,30,0.08) 0%, transparent 70%);
     border-radius: 50%;
   }
 
@@ -664,14 +696,14 @@
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 3px;
-    color: var(--accent);
+    color: #3C1E1E;
     margin-bottom: 4px;
     z-index: 1;
   }
 
   .coupon-discovery {
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(60,30,30,0.5);
     letter-spacing: 3px;
     margin-bottom: 8px;
     z-index: 1;
@@ -686,14 +718,16 @@
   }
 
   .coupon-headline em {
-    color: var(--accent);
+    color: #3C1E1E;
     font-style: normal;
+    text-decoration: underline;
+    text-decoration-color: rgba(60,30,30,0.3);
   }
 
   .coupon-offer {
     display: inline-block;
-    background: var(--accent);
-    color: #fff;
+    background: #3C1E1E;
+    color: #FEE500;
     padding: 6px 18px;
     border-radius: 20px;
     font-size: 18px;
@@ -707,7 +741,7 @@
     bottom: 10px;
     right: 18px;
     font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(60,30,30,0.25);
     z-index: 1;
   }
 
@@ -933,66 +967,22 @@
 <h1 class="section-title">- 게릴라 쿠폰 (명함 사이즈 / 타 부스 배치용) -</h1>
 <div class="coupon-grid">
 
-  <!-- 쿠폰 1 앞면 -->
+  <!-- 통합 쿠폰 앞면 -->
   <div class="coupon">
     <div class="coupon-front">
       <p class="coupon-brand">DENNOTE</p>
       <p class="coupon-discovery">HIDDEN COUPON</p>
       <p class="coupon-headline">이걸 발견하셨다면,<br><em>운이 좋으신 겁니다</em></p>
-      <span class="coupon-offer">커스텀 어버트먼트 50% 할인</span>
-      <span class="coupon-code">DEN-A001</span>
+      <ul class="coupon-offers-list">
+        <li><span class="offer-badge">혜택 1</span> 커스텀 어버트먼트 50% 할인</li>
+        <li><span class="offer-badge">혜택 2</span> 임플란트 단품주문 상담</li>
+        <li><span class="offer-badge">혜택 3</span> 블로그·SNS·뉴스·맘카페 마케팅 무료 지원</li>
+      </ul>
+      <span class="coupon-code">DEN-ALL01</span>
     </div>
   </div>
 
-  <!-- 쿠폰 1 뒷면 -->
-  <div class="coupon">
-    <div class="coupon-back">
-      <div class="coupon-back-qr">QR코드<br>삽입</div>
-      <div class="coupon-back-info">
-        <strong>(주)세이브코어</strong>
-        <span class="brand-sub">DENNOTE</span><br>
-        <span class="coupon-expire">&#x23F0; 박람회 기간 한정</span><br>
-        QR 스캔 &#8594; 상담 신청 즉시 적용
-      </div>
-    </div>
-  </div>
-
-  <!-- 쿠폰 2 앞면 -->
-  <div class="coupon">
-    <div class="coupon-front">
-      <p class="coupon-brand">DENNOTE</p>
-      <p class="coupon-discovery">SECRET DEAL</p>
-      <p class="coupon-headline">1케이스 원가<br><em>62% 절감</em>의 비밀</p>
-      <span class="coupon-offer">임플란트 단품주문 상담</span>
-      <span class="coupon-code">DEN-B001</span>
-    </div>
-  </div>
-
-  <!-- 쿠폰 2 뒷면 -->
-  <div class="coupon">
-    <div class="coupon-back">
-      <div class="coupon-back-qr">QR코드<br>삽입</div>
-      <div class="coupon-back-info">
-        <strong>(주)세이브코어</strong>
-        <span class="brand-sub">DENNOTE</span><br>
-        <span class="coupon-expire">&#x23F0; 박람회 기간 한정</span><br>
-        QR 스캔 &#8594; 상담 신청 즉시 적용
-      </div>
-    </div>
-  </div>
-
-  <!-- 쿠폰 3 앞면 -->
-  <div class="coupon">
-    <div class="coupon-front">
-      <p class="coupon-brand">DENNOTE</p>
-      <p class="coupon-discovery">FOR YOUR EYES ONLY</p>
-      <p class="coupon-headline">연 <em>8,000만원</em><br>절감의 구조</p>
-      <span class="coupon-offer">무료 비용 분석 제공</span>
-      <span class="coupon-code">DEN-C001</span>
-    </div>
-  </div>
-
-  <!-- 쿠폰 3 뒷면 -->
+  <!-- 통합 쿠폰 뒷면 -->
   <div class="coupon">
     <div class="coupon-back">
       <div class="coupon-back-qr">QR코드<br>삽입</div>
